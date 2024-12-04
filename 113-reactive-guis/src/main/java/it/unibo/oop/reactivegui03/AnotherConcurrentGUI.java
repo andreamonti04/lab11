@@ -3,8 +3,6 @@ package it.unibo.oop.reactivegui03;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.lang.reflect.InvocationTargetException;
-import java.io.Serial;
-import java.io.Serializable;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -91,7 +89,7 @@ public final class AnotherConcurrentGUI extends JFrame {
      * The counter agent is implemented as a nested class. This makes it
      * invisible outside and encapsulated.
      */
-    private final class Agent implements Runnable, Serializable {
+    private final class Agent implements Runnable {
         /*
          * Stop is volatile to ensure visibility. Look at:
          * 
@@ -102,8 +100,6 @@ public final class AnotherConcurrentGUI extends JFrame {
          * http://archive.is/4lsKW
          * 
          */
-        @Serial
-        private static final long serialVersionUID = 1L;
         private volatile boolean stop;
         private volatile boolean up = true;
         private int counter;
