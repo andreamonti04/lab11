@@ -93,13 +93,16 @@ public final class MusicGroupImpl implements MusicGroup {
         return this.songs
             .stream()       //apro stream
             .filter(s -> s.getAlbumName().isPresent())      //filtro se album è specificato è presente
-            .collect(Collectors.groupingBy(Song::getAlbumName, Collectors.summingDouble(Song::getDuration)))    //raggruppo per ogni album (dato il suo nome) tutte le durate delle canzoni di quell'album
-            .entrySet().stream()       //collect restituisce una mappa, conclusiva, quindi se voglio trasformare ancora devo riaprirlo
+            .collect(Collectors.groupingBy(Song::getAlbumName, Collectors.summingDouble(Song::getDuration)))
+            //raggruppo per ogni album (dato il suo nome) tutte le durate delle canzoni di quell'album
+            .entrySet().stream()
+            //collect restituisce una mappa, conclusiva, quindi se voglio trasformare ancora devo riaprirlo
             //gruopingby restituisce una mappa -> devo riaprirlo con entrySet lista oggetti entry che contengono chiave valore
             //keySet -> set di chiavi
             //value -> valori
             .max(Comparator.comparingDouble(Entry::getValue))   //computare al max passandogli il comparatore
-            .flatMap(Entry::getKey);        //prendo la chiave ma spacchetta il contenuto, non restitusico il valore ma lo spacchetto --> prendo contenuto dell'optional
+            .flatMap(Entry::getKey);        //prendo la chiave ma spacchetta il contenuto, non restitusico il valore 
+            //ma lo spacchetto --> prendo contenuto dell'optional
         //prendo singolarmente il contenuto dell'optional
         //verifico implicitamente se è vuoto perché restituisce un eccezione quindi con fmap restituisce un opzionbale vuoto
             //.get().getKey();      //la max, potrebbe restituire un vuoto
