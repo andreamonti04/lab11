@@ -44,7 +44,6 @@ public final class MultiThreadedMatrixSum implements SumMatrix {
             } else {
                 this.matrix = Arrays.copyOf(matrix, matrix.length); 
             }
-            //this.matrix = matrix;
             this.startpos = startpos;
             this.nelem = nelem;
         }
